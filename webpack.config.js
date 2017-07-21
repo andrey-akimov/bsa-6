@@ -11,11 +11,17 @@ module.exports = {
 	module:{
 		rules: [
 			{
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
+                test: /\.(css|scss)$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
 			},
 			{
-				test: /\.js$/,
+				enforce: 'pre', 	// Добавить в качестве preLoadera auto-prefixer для стилей
+				test: /\.(css|scss)$/,
+				exclude: /(node_modules)/,
+				loader: 'postcss-loader'
+			},
+			{
+				test: /\.js$/,		// Добавить babel-loader
 				exclude: /(node_modules)/,
 				use: {
                     loader: 'babel-loader',
@@ -23,17 +29,31 @@ module.exports = {
                         presets: ['env']
                     }
 				}
+			},
+			{
+				enforce: 'pre',		// Добавить в качестве preLoadera linter для кода
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				loader: 'eslint-loader'
+			},
+			{
+				test: /\.(png|jpg|jpeg)$/,		// Добавить loader для картинок.
+				use: [ 'file-loader', 'image-webpack-loader' ]
 			}
 		]
 	},
-	plugins: [new webpack.optimize.UglifyJsPlugin({
-		minimize: true,
+	plugins: [new webpack.optimize.UglifyJsPlugin({		// Добавить и настроить UglifyJSPlugin
+		output: {
+			comments: false,
+			beautify: false		// Включить uglification
+		},
+		minimize: true,		// Включить minification
 		compress: {
 			warnings: false
 		}
 	})],
 	devServer: {
-		inline:true,
+		inline: true,
 		port: 8081
 	}
 }

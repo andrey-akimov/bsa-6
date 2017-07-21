@@ -1,5 +1,5 @@
 var userList = require('./userList.js');
-require('../css/style.css');
+require('../css/style.scss');
 
 const users = [
     { name: 'Oksana', age: 22 }, 
@@ -15,3 +15,8 @@ const users = [
 
 var userListModule = new userList(users);
 userListModule.showList();
+
+
+
+
+/*>>>> try to find me! <<<<*/
