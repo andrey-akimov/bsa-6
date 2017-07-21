@@ -38,7 +38,7 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|jpeg)$/,		// Добавить loader для картинок.
-				use: [ 'file-loader', 'image-webpack-loader' ]
+				use: [ 'file-loader?name=[name].[ext]', 'image-webpack-loader' ]
 			}
 		]
 	},

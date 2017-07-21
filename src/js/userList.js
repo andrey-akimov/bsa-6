@@ -9,7 +9,7 @@ function userList(users){
             const img = document.createElement("img");
             const div = document.createElement("div");
             div.append(user.name + ' ' + user.age);
-            img.src = url.default;
+            img.src = url;
             div.appendChild(img);
             container.appendChild(div);
         });
