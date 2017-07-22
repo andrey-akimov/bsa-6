@@ -1,4 +1,4 @@
-let url = require('file-loader!../img/user.png');
+let url = require('./../img/user.png');
 var _ = require('lodash');
 
 function userList(users){
