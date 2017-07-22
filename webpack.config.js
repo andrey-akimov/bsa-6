@@ -37,8 +37,15 @@ module.exports = {
 				loader: 'eslint-loader'
 			},
 			{
-				test: /\.(png|jpg|jpeg)$/,		// Добавить loader для картинок.
-				use: [ 'file-loader?name=[name].[ext]', 'image-webpack-loader' ]
+				test: /\.(png|jpg|gif)$/,		// Добавить loader для картинок.
+				use: [
+				{
+					loader: 'url-loader',
+					options: {
+					limit: 8192
+					}
+				}
+				]
 			}
 		]
 	},
